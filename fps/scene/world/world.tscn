@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/world/ground.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/player/player.tscn" type="PackedScene" id=3]
+
+[node name="World" type="Spatial"]
+
+[node name="Ground" parent="." instance=ExtResource( 1 )]
+transform = Transform( 50, 0, 0, 0, 0.2, 0, 0, 0, 50, 0, 0.164871, 0.222047 )
+
+[node name="Obstacles" type="Spatial" parent="."]
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.637333, 0 )
+
+[node name="SpotLight" parent="Player/CamRoot/Camera" index="0"]
+transform = Transform( 1, 0, 0, 0, 0.975519, -0.219914, 0, 0.219914, 0.975519, 0.274881, 0.226446, 0.196298 )
+spot_range = 2.342
+spot_angle = 16.82
+
+[editable path="Player"]
