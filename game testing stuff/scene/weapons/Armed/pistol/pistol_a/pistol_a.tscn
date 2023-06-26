@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scene/weapons/Armed/pistol/pistol.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Equip"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Root/Anchor:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 90, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Root/Anchor:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 90, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Unequip"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Root/Anchor:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -90, 0, 0 ) ]
+}
+
+[node name="Pistol_A" type="Spatial"]
+script = ExtResource( 1 )
+weapon_name = "Pistol"
+
+[node name="Root" type="Spatial" parent="."]
+
+[node name="Anchor" type="Spatial" parent="Root"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5 )
+
+[node name="Body" type="Spatial" parent="Root/Anchor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
+
+[node name="Upper" type="MeshInstance" parent="Root/Anchor/Body"]
+transform = Transform( 0.02, 0, 0, 0, 0.03, 0, 0, 0, 0.15, 0, 0.041, -0.095 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../../../..")
+
+[node name="Lower" type="MeshInstance" parent="Root/Anchor/Body"]
+transform = Transform( 0.02, 2.13329e-06, 2.35503e-05, -2.85826e-06, 0.0791132, 0.00445442, -1.5447e-05, -0.0118785, 0.0296675, 0, -0.013, 0.037 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../../../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Equip = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+anims/Unequip = SubResource( 5 )

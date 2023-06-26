@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://idk.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player.tscn" type="PackedScene" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="StaticBody" parent="." instance=ExtResource( 1 )]
+transform = Transform( 67.342, 0, 0, 0, 0.103197, 0, 0, 0, 69.5307, 0, 0.570279, 0 )
+
+[node name="MeshInstance" parent="StaticBody" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00416998, -0.209927, -0.00427076 )
+
+[node name="KinematicBody" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.782759, 0 )
+
+[node name="Camera" parent="KinematicBody/CamRoot" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002, 0.732, 2.074 )
+
+[node name="AimCast" type="RayCast" parent="KinematicBody/CamRoot/Camera" index="0"]
+
+[node name="Pistol_A" parent="KinematicBody/CamRoot/Weapons" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358, 0.451, -0.401 )
+
+[node name="Rifle_A" parent="KinematicBody/CamRoot/Weapons" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.446, 0.475, -0.288 )
+
+[editable path="StaticBody"]
+[editable path="KinematicBody"]
